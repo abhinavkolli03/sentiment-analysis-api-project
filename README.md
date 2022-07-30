@@ -23,6 +23,7 @@ https://vimeo.com/734881463
 - [fastapiserver.py](url): Quick implementation of FastAPI that enabled the following APIs:
   - initialize: initializes and recreates all binary classifier models from scratch.
   - predict: by providing a review and available model, the API can process a prediction and return the sentiment back.
+  - Run this file to see the APIs in action!
 - [inference.py](url) and [initialize.py](url): tester classes used during creation of API
 - [pyramidswaggerserver.py](url): Implemented swagger.yaml schema to create a public endpoint for the API through Pyramid Swagger UI. The swagger implementation works on the backend in terms of calling APIs through browser, but the Swagger UI portion is still under maintenance.
 
