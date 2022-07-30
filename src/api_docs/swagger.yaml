@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  description: API Server using Swagger for Sentiment Analysis API
+  version: 1.0.6
+  title: Sentiment Analysis API
+schemes:
+  - http
+  - https
+paths:
+  /:
+    get:
+      summary: Test if server works
+      operationId: getServerTest
+      description: Tests the server
+      responses:
+        '200':
+          description: Server works!
+          schema:
+            $ref: '#/definitions/ApiResponse'
+  /predict:
+      post:
+        summary: Get sentiment of text provided from selected model
+        operationId: postSentiment
+        description: Posts the sentiment predicted from the text
+        consumes: [
+            "multipart/form-data"
+        ]
+        produces: [
+            "application/json"
+        ]
+        parameters:
+          - name: review_text
+            in: formData
+            description: Text to be analyzed
+            required: true
+            type: string
+          - name: select_model
+            in: formData
+            description: Trained model that will analyze text
+            required: true
+            type: string
+        responses:
+          '200':
+            description: successfully predicted sentiment
+            schema:
+              $ref: '#/definitions/ApiResponse'
+  /initialize:
+      get:
+        summary: Retrain and test binary classifiers
+        operationId: getInitializers
+        description: Retest and run models and vectorizers
+        responses:
+          '200':
+            description: Models have been retrained and are ready to use!
+            schema:
+              $ref: '#/definitions/ApiResponse'
+definitions:
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
